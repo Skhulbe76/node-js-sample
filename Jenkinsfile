@@ -1,26 +1,34 @@
 pipeline{
-    agent: any
+    agent any
 
     stages{
-        steps("Checkout"){
-            step{
+        stage("Checkout"){
+            steps{
                 echo "checkout step"
+                git branch: 'master', url: "https://github.com/Skhulbe76/node-js-sample"
             }
         }
-        steps("Build"){
-            step{
+
+        stage("Build"){
+            steps{
                 echo "Build step"
+                sh "npm install"
             }
         }
-        steps("Test"){
-            step{
+
+        stage("Test"){
+            steps{
                 echo "Test step"
+
             }
         }
-        steps("Deploy"){
-            step{
+
+        stage("Deploy"){
+            steps{
                 echo "Deploy step"
+                sh "npm start"
             }
         }
     }
+
 }
